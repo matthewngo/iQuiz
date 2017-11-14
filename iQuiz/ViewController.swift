@@ -10,12 +10,16 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var titles : [String] = ["Mathematics", "Marvel Superheros", "Science"]
+    var scoreNum: Int = 0
+    var scoreDenom: Int = 0
+    
+    var titles : [String] = ["Mathematics", "Marvel Superheroes", "Science"]
     var descriptions : [String] = ["A math quiz", "A Marvel's superheroes quiz", "A science quiz"]
     var image : [UIImage] = [(UIImage(named: "Unknown"))!, (UIImage(named: "Unknown"))!, (UIImage(named: "Unknown"))!]
+    var selected = ""
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "cell")
+        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
         cell.textLabel!.text = titles[indexPath.row]
         cell.detailTextLabel?.text = descriptions[indexPath.row]
         cell.imageView?.image = image[indexPath.row]
@@ -40,6 +44,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let alertController = UIAlertController(title: "Settings", message: "Settings go here", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selected = titles[indexPath.row]
+        self.performSegue(withIdentifier: "QuestionSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is QuestionViewController {
+            let vc = segue.destination as! QuestionViewController
+            vc.type = selected
+            vc.scoreNum = scoreNum
+            vc.scoreDenom = scoreDenom
+        }
+        
     }
 }
 
