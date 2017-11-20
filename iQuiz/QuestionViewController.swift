@@ -16,15 +16,14 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var Button4: UIButton!
     var type: String = ""
     var question: String = ""
-    var option1: String = ""
-    var option2: String = ""
-    var option3: String = ""
-    var option4: String = ""
     var selected: String = ""
     var correctAnswer: String = ""
     var scoreNum: Int = 0
     var scoreDenom: Int = 0
     var quizSize: Int = 0
+    var quiz: [String] = []
+    var quizAnswers: [Int] = []
+    var scores: [String] = []
     
     var mathQuiz = ["1 + 2 = ?", "3", "4", "5", "6"]
     
@@ -36,38 +35,12 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if type == "Mathematics" {
-            question = mathQuiz[0]
-            option1 = mathQuiz[1]
-            option2 = mathQuiz[2]
-            option3 = mathQuiz[3]
-            option4 = mathQuiz[4]
-            correctAnswer = option1
-            quizSize = mathQuiz.count
-        } else if type == "Marvel Superheroes" {
-            question = heroQuiz[0]
-            option1 = heroQuiz[1]
-            option2 = heroQuiz[2]
-            option3 = heroQuiz[3]
-            option4 = heroQuiz[4]
-            correctAnswer = option2
-            quizSize = heroQuiz.count
-        } else if type == "Science" {
-            question = scienceQuiz[0]
-            option1 = scienceQuiz[1]
-            option2 = scienceQuiz[2]
-            option3 = scienceQuiz[3]
-            option4 = scienceQuiz[4]
-            correctAnswer = option4
-            quizSize = scienceQuiz.count
-        }
-        
-        questionLabel.text = question
-        Button1.setTitle(option1, for: .normal)
-        Button2.setTitle(option2, for: .normal)
-        Button3.setTitle(option3, for: .normal)
-        Button4.setTitle(option4, for: .normal)
+        questionLabel.text = quiz[5*scoreDenom]
+        Button1.setTitle(quiz[5*scoreDenom+1], for: .normal)
+        Button2.setTitle(quiz[5*scoreDenom+2], for: .normal)
+        Button3.setTitle(quiz[5*scoreDenom+3], for: .normal)
+        Button4.setTitle(quiz[5*scoreDenom+4], for: .normal)
+        correctAnswer = quiz[5*scoreDenom + quizAnswers[scoreDenom]]
         // Do any additional setup after loading the view.
     }
 
@@ -102,12 +75,15 @@ class QuestionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is AnswerViewController {
             let vc = segue.destination as! AnswerViewController
-            vc.question = question
+            vc.question = quiz[5*scoreDenom]
             vc.correctAnswer = correctAnswer
             vc.scoreNum = scoreNum
             vc.scoreDenom = scoreDenom
             vc.type = type
-            vc.quizSize = quizSize
+            vc.quizSize = quiz.count
+            vc.quiz = quiz
+            vc.quizAnswers = quizAnswers
+            vc.scores = scores
             if selected == correctAnswer {
                 vc.correct = "Right"
             } else {

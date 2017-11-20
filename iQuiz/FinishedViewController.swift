@@ -15,10 +15,12 @@ class FinishedViewController: UIViewController {
     var scoreNum: Int = 0
     var scoreDenom: Int = 0
     var type: String = ""
+    var scores: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scoreLabel.text = "\(scoreNum)/\(scoreDenom)"
+        scores.append(scoreLabel.text!)
         if scoreNum == scoreDenom {
             desLabel.text = "Perfect Job!"
         } else {
@@ -48,6 +50,7 @@ class FinishedViewController: UIViewController {
             let vc = segue.destination as! ViewController
             vc.scoreNum = 0
             vc.scoreDenom = 0
+            vc.scores = scores
         }
     }
 }

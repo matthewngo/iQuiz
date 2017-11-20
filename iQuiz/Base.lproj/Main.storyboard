@@ -31,7 +31,16 @@
                                 <items>
                                     <barButtonItem title="Settings" id="gyf-KG-Por">
                                         <connections>
-                                            <action selector="settingsAlertWithSender:" destination="BYZ-38-t0r" id="U4f-RS-WyI"/>
+                                            <segue destination="2JM-fw-Yk9" kind="popoverPresentation" identifier="SettingsSegue" popoverAnchorBarButtonItem="gyf-KG-Por" id="TZn-j8-JDw">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Scores" id="NoT-4M-0I2">
+                                        <connections>
+                                            <segue destination="CNj-7H-gbt" kind="popoverPresentation" identifier="ScoreSegue" popoverAnchorBarButtonItem="NoT-4M-0I2" id="oUh-3e-7i2">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -58,6 +67,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="table" destination="fob-Bk-RQk" id="gTa-Si-cnN"/>
                         <segue destination="mXh-ll-6Oe" kind="show" identifier="QuestionSegue" id="1t2-61-3vE"/>
                     </connections>
                 </viewController>
@@ -118,7 +128,6 @@
                                 <items>
                                     <barButtonItem title="Back" id="qw8-jf-zaI">
                                         <connections>
-                                            <action selector="settingsAlertWithSender:" destination="BYZ-38-t0r" id="hDG-yW-rSN"/>
                                             <segue destination="BYZ-38-t0r" kind="show" id="r8d-ye-7Qc"/>
                                         </connections>
                                     </barButtonItem>
@@ -213,7 +222,6 @@
                                 <items>
                                     <barButtonItem title="Back" id="2ny-nh-W7n">
                                         <connections>
-                                            <action selector="settingsAlertWithSender:" destination="BYZ-38-t0r" id="x85-xP-3n0"/>
                                             <segue destination="BYZ-38-t0r" kind="show" id="GzO-sY-5qo"/>
                                         </connections>
                                     </barButtonItem>
@@ -280,7 +288,6 @@
                                 <items>
                                     <barButtonItem title="Back" id="AC0-4A-uUg">
                                         <connections>
-                                            <action selector="settingsAlertWithSender:" destination="BYZ-38-t0r" id="sUC-Nx-H7P"/>
                                             <segue destination="BYZ-38-t0r" kind="show" id="acN-p9-8cF"/>
                                         </connections>
                                     </barButtonItem>
@@ -331,6 +338,103 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0sH-ss-6If" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2249" y="148"/>
+        </scene>
+        <!--Popover-->
+        <scene sceneID="2mC-Jp-jUz">
+            <objects>
+                <viewController storyboardIdentifier="Popover" title="Popover" id="2JM-fw-Yk9" customClass="ViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N5Z-16-CGq">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0h-jh-dPH">
+                                <rect key="frame" x="42" y="113" width="166" height="26"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Check Now"/>
+                                <connections>
+                                    <action selector="refreshData:" destination="2JM-fw-Yk9" eventType="touchUpInside" id="Ese-n6-kTE"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cj5-mh-R2f">
+                                <rect key="frame" x="16" y="60" width="218" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3m-b0-fvs">
+                                <rect key="frame" x="93" y="31" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cj5-mh-R2f" firstAttribute="centerY" secondItem="DLp-ac-xfv" secondAttribute="centerY" id="IAE-fU-zrt"/>
+                            <constraint firstItem="cj5-mh-R2f" firstAttribute="leading" secondItem="DLp-ac-xfv" secondAttribute="leading" constant="16" id="M4W-6C-kTX"/>
+                            <constraint firstItem="DLp-ac-xfv" firstAttribute="bottom" secondItem="i0h-jh-dPH" secondAttribute="bottom" constant="11" id="WLa-L0-vbi"/>
+                            <constraint firstItem="cj5-mh-R2f" firstAttribute="top" secondItem="J3m-b0-fvs" secondAttribute="bottom" constant="8" id="Wfd-sg-F8X"/>
+                            <constraint firstItem="i0h-jh-dPH" firstAttribute="leading" secondItem="DLp-ac-xfv" secondAttribute="leading" constant="42" id="Xq0-Gh-Gix"/>
+                            <constraint firstItem="J3m-b0-fvs" firstAttribute="centerX" secondItem="DLp-ac-xfv" secondAttribute="centerX" id="iFs-sN-IDp"/>
+                            <constraint firstItem="DLp-ac-xfv" firstAttribute="trailing" secondItem="cj5-mh-R2f" secondAttribute="trailing" constant="16" id="jfb-n6-Xe6"/>
+                            <constraint firstItem="DLp-ac-xfv" firstAttribute="trailing" secondItem="i0h-jh-dPH" secondAttribute="trailing" constant="42" id="lEl-R0-3ls"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DLp-ac-xfv"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="100"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="150"/>
+                    <connections>
+                        <outlet property="textField" destination="cj5-mh-R2f" id="pcb-Mf-ET2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="69h-Q0-LJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-842" y="-52"/>
+        </scene>
+        <!--Scores-->
+        <scene sceneID="whR-kS-J6a">
+            <objects>
+                <viewController storyboardIdentifier="Scores" title="Scores" id="CNj-7H-gbt" customClass="ViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q3r-pF-xvo">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-ve-wSU">
+                                <rect key="frame" x="99" y="65" width="53" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2g-g8-4YV">
+                                <rect key="frame" x="58" y="0.0" width="134" height="30"/>
+                                <state key="normal" title="Click"/>
+                                <connections>
+                                    <action selector="clickToGetScores:" destination="CNj-7H-gbt" eventType="touchUpInside" id="cqd-Gf-IE1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="V2g-g8-4YV" firstAttribute="top" secondItem="t1g-Ga-5VG" secondAttribute="top" id="788-Qj-nMI"/>
+                            <constraint firstItem="wA0-ve-wSU" firstAttribute="centerX" secondItem="t1g-Ga-5VG" secondAttribute="centerX" id="Eu5-mh-SNV"/>
+                            <constraint firstItem="V2g-g8-4YV" firstAttribute="leading" secondItem="t1g-Ga-5VG" secondAttribute="leading" constant="58" id="LVd-k1-Ksl"/>
+                            <constraint firstItem="wA0-ve-wSU" firstAttribute="centerY" secondItem="t1g-Ga-5VG" secondAttribute="centerY" id="k3f-r8-fwt"/>
+                            <constraint firstItem="t1g-Ga-5VG" firstAttribute="trailing" secondItem="V2g-g8-4YV" secondAttribute="trailing" constant="58" id="mKx-54-tr1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="t1g-Ga-5VG"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="100"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="150"/>
+                    <connections>
+                        <outlet property="scoreLabel" destination="wA0-ve-wSU" id="uqF-Mf-n6a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z0h-fu-MhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-843" y="381"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

@@ -19,6 +19,9 @@ class AnswerViewController: UIViewController {
     var scoreDenom: Int = 0
     var quizSize: Int = 0
     var type: String = ""
+    var quiz: [String] = []
+    var quizAnswers: [Int] = []
+    var scores: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,11 +66,15 @@ class AnswerViewController: UIViewController {
             vc.scoreNum = scoreNum
             vc.scoreDenom = scoreDenom
             vc.type = type
+            vc.scores = scores
         } else if segue.destination is QuestionViewController {
             let vc = segue.destination as! QuestionViewController
             vc.scoreNum = scoreNum
             vc.scoreDenom = scoreDenom
             vc.type = type
+            vc.quizAnswers = quizAnswers
+            vc.quiz = quiz
+            vc.scores = scores
         }
         
     }
